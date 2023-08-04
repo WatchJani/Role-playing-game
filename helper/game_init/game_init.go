@@ -1,4 +1,4 @@
-package helper
+package game_init
 
 import (
 	g "github.com/WatchJani/Role-playing-game/model/game"

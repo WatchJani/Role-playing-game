@@ -1,0 +1,50 @@
+[
+    {
+        "Name": "Scattergun",
+        "PowerRange": 30,
+        "MaxDamageTake": 105,
+        "MinDamageTake": 30
+    },
+    {
+        "Name": "Rocket Launcher",
+        "PowerRange": 50,
+        "MaxDamageTake": 112,
+        "MinDamageTake": 29
+    },
+    {
+        "Name": "Flame Thrower",
+        "PowerRange": 5,
+        "MaxDamageTake": 153,
+        "MinDamageTake": 6
+    },
+    {
+        "Name": "Grenade Launcher",
+        "PowerRange": 20,
+        "MaxDamageTake": 124,
+        "MinDamageTake": 22
+    },
+    {
+        "Name": "Minigun",
+        "PowerRange": 100,
+        "MaxDamageTake": 25,
+        "MinDamageTake": 12
+    },
+    {
+        "Name": "Shotgun",
+        "PowerRange": 10,
+        "MaxDamageTake": 70,
+        "MinDamageTake": 3.5
+    },
+    {
+        "Name": "Sniper Rifle",
+        "PowerRange": 50,
+        "MaxDamageTake": 2,
+        "MinDamageTake": 0.3
+    },
+    {
+        "Name": "Revolver",
+        "PowerRange": 2,
+        "MaxDamageTake": 60,
+        "MinDamageTake": 15
+    }
+]
