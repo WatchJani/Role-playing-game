@@ -1,0 +1,12 @@
+[{
+    "Class":"Scout",
+    "Movement": 6,
+    "Exp": 50,
+    "Health": 30,
+    "Weapon":{
+        "Name": "Scattergun",
+        "PowerRange": 30,
+        "MaxDamageTake": 105,
+        "MinDamageTake": 30
+    }
+}]

@@ -8,7 +8,7 @@ import (
 type Skeleton struct {
 	X      float64
 	Y      float64
-	Exp    float64
+	Exp    float64  `json:"Exp"`
 	Health float64  `json:"Health"`
 	Weapon w.Weapon `json:"Weapon"`
 }

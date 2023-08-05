@@ -7,8 +7,8 @@ type Weapon struct {
 	MinDamageTake float64 `json:"MinDamageTake"`
 }
 
-func EmptyWeapon() *[]Weapon {
-	return &[]Weapon{}
+func EmptyWeapon() *Weapon {
+	return &Weapon{}
 }
 
 func NewWeapon(name string, powerRange, maxDamageTake, minDamageTake float64) Weapon {

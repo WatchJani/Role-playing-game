@@ -1,12 +1,13 @@
 package game_init
 
 import (
+	e "github.com/WatchJani/Role-playing-game/model/enemy"
 	g "github.com/WatchJani/Role-playing-game/model/game"
 	h "github.com/WatchJani/Role-playing-game/model/hero"
 	file "github.com/WatchJani/Role-playing-game/model/reader"
 )
 
-func GameInit() *g.Game {
+func GameInit() (*g.Game, *[]e.Enemy) {
 	gameSettings := g.NewSettings()
 	file.NewRead("./config/game_settings.json", gameSettings)
 
@@ -16,5 +17,8 @@ func GameInit() *g.Game {
 	gameHero := h.EmptyHero()
 	file.NewRead("./config/hero.json", gameHero)
 
-	return g.NewGame(*gameSettings, *gameBlueprint, *gameHero)
+	enemy := e.EmptyEnemies()
+	file.NewRead("./config/enemies.json", enemy)
+
+	return g.NewGame(*gameSettings, *gameBlueprint, *gameHero), enemy
 }

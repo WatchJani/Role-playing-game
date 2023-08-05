@@ -59,6 +59,10 @@ func NewGame(settings Settings, gameBlueprint GameBlueprint, hero h.Hero) *Game 
 	}
 }
 
+func (g *Game) BoostLvl() {
+	g.Lvl *= g.LvlBoost
+}
+
 // func (g Game) String() {
 // 	fmt.Printf("Hero Health: %f \n", g.HeroHealth, g.Exp, g.X, g.Y, g.StartLvlPoint, g.Lvl, g.Radius, g.)
 // }
