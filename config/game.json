@@ -1,4 +1,7 @@
 {
+    "Width": 100,
+    "Height": 100,
+    "Lvl": 3,
     "SpawnBorderHero": 20,
     "DynamicRadius": 4,
     "MaxRadius": 20,

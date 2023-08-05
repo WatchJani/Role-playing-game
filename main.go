@@ -5,11 +5,14 @@ import (
 )
 
 func main() {
-	game, enemies := load.GameInit()
-	game.Hero.String()
+	game, hero, enemies := load.GameInit()
+	hero.String()
+
+	game.String()
 
 	for _, enemy := range *enemies {
+		enemy.Spawn(*game)
+
 		enemy.String()
 	}
-
 }

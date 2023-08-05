@@ -16,8 +16,8 @@ func EmptyHero() *Hero {
 	return &Hero{}
 }
 
-func (h *Hero) UpdateHero(Height, Width, SpawnBorderHero float64) Hero {
-	return Hero{
+func (h *Hero) UpdateHero(Height, Width, SpawnBorderHero float64) *Hero {
+	return &Hero{
 		Skeleton: s.NewSkeletonHero(
 			Width,
 			Height,

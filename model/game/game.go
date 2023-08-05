@@ -1,10 +1,19 @@
 package game
 
 import (
+	"fmt"
 	"math"
 
 	h "github.com/WatchJani/Role-playing-game/model/hero"
 )
+
+type Game struct {
+	Radius float64
+	Spawn  int
+	*h.Hero
+	Settings
+	GameBlueprint
+}
 
 type Settings struct {
 	SpawnBorderHero float64 `json:"SpawnBorderHero"`
@@ -14,55 +23,40 @@ type Settings struct {
 	LvlBoost        float64 `json:"LvlBoost"`
 }
 
-func NewSettings() *Settings {
-	return &Settings{}
-}
-
 type GameBlueprint struct {
 	Width  float64 `json:"Width"`
 	Height float64 `json:"Height"`
 	Lvl    float64 `json:"Lvl"`
 }
 
-type Game struct {
-	Radius float64
-	Spawn  int
-	h.Hero
-	Settings
-	GameBlueprint
+func NewGame() *Game {
+	return &Game{}
 }
 
-func NewGameBlueprint() *GameBlueprint {
-	return &GameBlueprint{}
-}
-
-func NewGame(settings Settings, gameBlueprint GameBlueprint, hero h.Hero) *Game {
+func (game *Game) Update(hero h.Hero) {
 	var (
-		height = gameBlueprint.Height
-		width  = gameBlueprint.Width
+		height = game.Height
+		width  = game.Width
 	)
 
-	radius := math.Min(height, width) / settings.DynamicRadius
+	radius := math.Min(height, width) / game.DynamicRadius
 
-	if radius > settings.MaxRadius {
-		radius = settings.MaxRadius
+	if radius > game.MaxRadius {
+		radius = game.MaxRadius
 	}
 
 	height = math.Min(height, 100)
-	width = math.Min(gameBlueprint.Width, 100)
+	width = math.Min(game.Width, 100)
 
-	return &Game{
-		Radius:        radius,
-		Settings:      settings,
-		GameBlueprint: gameBlueprint,
-		Hero:          hero.UpdateHero(height, width, settings.SpawnBorderHero),
-	}
+	game.Radius = radius
+	game.Hero = hero.UpdateHero(height, width, game.SpawnBorderHero)
 }
 
 func (g *Game) BoostLvl() {
 	g.Lvl *= g.LvlBoost
 }
 
-// func (g Game) String() {
-// 	fmt.Printf("Hero Health: %f \n", g.HeroHealth, g.Exp, g.X, g.Y, g.StartLvlPoint, g.Lvl, g.Radius, g.)
-// }
+func (g Game) String() {
+	fmt.Printf("Radius: %f | Spawn: %d | Width: %f | Height: %f | Lvl: %f | BorderHero: %f | DynamicRadius: %f | MaxRadius: %f | StartLvlPoint: %f | LvlBoost: %f\n",
+		g.Radius, g.Spawn, g.Width, g.Height, g.Lvl, g.SpawnBorderHero, g.DynamicRadius, g.MaxRadius, g.StartLvlPoint, g.LvlBoost)
+}
