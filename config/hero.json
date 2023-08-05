@@ -1,0 +1,9 @@
+{
+    "Health": 500,
+    "Weapon": {
+        "Name": "Scattergun",
+        "PowerRange": 30,
+        "MaxDamageTake": 105,
+        "MinDamageTake": 30
+    }
+}

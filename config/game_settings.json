@@ -3,6 +3,5 @@
     "DynamicRadius": 4,
     "MaxRadius": 20,
     "StartLvlPoint": 3,
-    "LvlBoost": 2.5,
-    "HeroHealth": 500
+    "LvlBoost": 2.5
 }

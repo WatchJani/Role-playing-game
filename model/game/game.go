@@ -12,7 +12,6 @@ type Settings struct {
 	MaxRadius       float64 `json:"MaxRadius"`
 	StartLvlPoint   float64 `json:"StartLvlPoint"`
 	LvlBoost        float64 `json:"LvlBoost"`
-	HeroHealth      float64 `json:"HeroHealth"`
 }
 
 func NewSettings() *Settings {
@@ -28,7 +27,6 @@ type GameBlueprint struct {
 type Game struct {
 	Radius float64
 	Spawn  int
-	Killed int
 	h.Hero
 	Settings
 	GameBlueprint
@@ -38,7 +36,7 @@ func NewGameBlueprint() *GameBlueprint {
 	return &GameBlueprint{}
 }
 
-func NewGame(settings Settings, gameBlueprint GameBlueprint) *Game {
+func NewGame(settings Settings, gameBlueprint GameBlueprint, hero h.Hero) *Game {
 	var (
 		height = gameBlueprint.Height
 		width  = gameBlueprint.Width
@@ -57,11 +55,7 @@ func NewGame(settings Settings, gameBlueprint GameBlueprint) *Game {
 		Radius:        radius,
 		Settings:      settings,
 		GameBlueprint: gameBlueprint,
-		Hero: h.NewHero(
-			width,
-			height,
-			settings.HeroHealth,
-			settings.SpawnBorderHero),
+		Hero:          hero.UpdateHero(height, width, settings.SpawnBorderHero),
 	}
 }
 

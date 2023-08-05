@@ -9,16 +9,23 @@ import (
 )
 
 type Hero struct {
+	Killed int
 	s.Skeleton
 }
 
-func NewHero(Height, Width, HeroHealth, SpawnBorderHero float64) Hero {
+func EmptyHero() *Hero {
+	return &Hero{}
+}
+
+func (h *Hero) UpdateHero(Height, Width, SpawnBorderHero float64) Hero {
+
 	return Hero{
-		s.NewSkeletonHero(
+		Skeleton: s.NewSkeletonHero(
 			Width,
 			Height,
-			HeroHealth,
+			h.Health,
 			SpawnBorderHero,
+			h.Weapon,
 		),
 	}
 }
@@ -45,7 +52,7 @@ func NewSkeletonEnemy(height, width, radius, exp, health float64, weapon w.Weapo
 }
 
 func (h Hero) String() {
-	fmt.Printf("Exp: %f | Health: %f | Weapon: \n", h.Exp, h.Health)
+	fmt.Printf("Exp: %f | Health: %f | Weapon: %s | Killed: %d | X-coordination: %f | Y-coordination: %f\n", h.Exp, h.Health, h.Weapon.Name, h.Killed, h.X, h.Y)
 }
 
 func (h Hero) Damage() float64 {
