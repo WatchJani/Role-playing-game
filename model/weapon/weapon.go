@@ -10,12 +10,3 @@ type Weapon struct {
 func EmptyWeapon() *Weapon {
 	return &Weapon{}
 }
-
-func NewWeapon(name string, powerRange, maxDamageTake, minDamageTake float64) Weapon {
-	return Weapon{
-		Name:          name,
-		PowerRange:    powerRange,
-		MaxDamageTake: maxDamageTake,
-		MinDamageTake: minDamageTake,
-	}
-}

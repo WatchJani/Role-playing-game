@@ -1,12 +1,110 @@
-[{
-    "Class":"Scout",
-    "Movement": 6,
-    "Exp": 50,
-    "Health": 30,
-    "Weapon":{
-        "Name": "Scattergun",
-        "PowerRange": 30,
-        "MaxDamageTake": 105,
-        "MinDamageTake": 30
+[
+    {
+        "Class": "Scout",
+        "Movement": 6,
+        "Exp": 50,
+        "Health": 30,
+        "Weapon": {
+            "Name": "Scattergun",
+            "PowerRange": 30,
+            "MaxDamageTake": 105,
+            "MinDamageTake": 30
+        }
+    },
+    {
+        "Class": "Soldier",
+        "Movement": 5,
+        "Exp": 80,
+        "Health": 80,
+        "Weapon": {
+            "Name": "Rocket Launcher",
+            "PowerRange": 50,
+            "MaxDamageTake": 112,
+            "MinDamageTake": 29
+        }
+    },
+    {
+        "Class": "Pyro",
+        "Movement": 4,
+        "Exp": 100,
+        "Health": 50,
+        "Weapon": {
+            "Name": "Flame Thrower",
+            "PowerRange": 5,
+            "MaxDamageTake": 153,
+            "MinDamageTake": 6
+        }
+    },
+    {
+        "Class": "Demoman",
+        "Movement": 3,
+        "Exp": 100,
+        "Health": 80,
+        "Weapon": {
+            "Name": "Grenade Launcher",
+            "PowerRange": 20,
+            "MaxDamageTake": 124,
+            "MinDamageTake": 22
+        }
+    },
+    {
+        "Class": "Heavy",
+        "Movement": 0.5,
+        "Exp": 250,
+        "Health": 200,
+        "Weapon": {
+            "Name": "Minigun",
+            "PowerRange": 100,
+            "MaxDamageTake": 25,
+            "MinDamageTake": 12
+        }
+    },
+    {
+        "Class": "Engineer",
+        "Movement": 5,
+        "Exp": 90,
+        "Health": 80,
+        "Weapon": {
+            "Name": "Shotgun",
+            "PowerRange": 10,
+            "MaxDamageTake": 70,
+            "MinDamageTake": 3.5
+        }
+    },
+    {
+        "Class": "Medic",
+        "Movement": 2,
+        "Exp": 20,
+        "Health": 5,
+        "Weapon": {
+            "Name": "Syringe Gun",
+            "PowerRange": 10,
+            "MaxDamageTake": 5,
+            "MinDamageTake": 3.5
+        }
+    },
+    {
+        "Class": "Sniper",
+        "Movement": 0.2,
+        "Exp": 120,
+        "Health": 60,
+        "Weapon": {
+            "Name": "Sniper Rifle",
+            "PowerRange": 50,
+            "MaxDamageTake": 2,
+            "MinDamageTake": 0.3
+        }
+    },
+    {
+        "Class": "Spy",
+        "Movement": 2,
+        "Exp": 30,
+        "Health": 20,
+        "Weapon": {
+            "Name": "Revolver",
+            "PowerRange": 2,
+            "MaxDamageTake": 60,
+            "MinDamageTake": 15
+        }
     }
-}]
+]
