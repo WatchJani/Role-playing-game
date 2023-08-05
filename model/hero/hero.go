@@ -39,7 +39,9 @@ func TestHeroNew(x, y, health float64) Hero {
 }
 
 func (h Hero) String() {
-	fmt.Printf("Exp: %f | Health: %f | Weapon: %s | Killed: %d | X-coordination: %f | Y-coordination: %f\n", h.Exp, h.Health, h.Weapon.Name, h.Killed, h.X, h.Y)
+	fmt.Printf("Exp: %f | Health: %f | Weapon: %s | Killed: %d | X-coordination: %f | Y-coordination: %f\n",
+		h.Exp, h.Health, h.Weapon.Name, h.Killed, h.X, h.Y,
+	)
 }
 
 func (h Hero) Damage() float64 {
