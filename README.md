@@ -14,7 +14,7 @@ The project is inspired by the game "Vampire Survivors." It contains a complete 
 - Adding new and improved abilities
 
 ## The objective of the game 
-Is to survive the attack of randomly generated enemies at each level, with each level being different. The game's dynamics involve continuously collecting experience points from defeated enemies, and it supports leveling up and choosing one of three possible upgrades with each new level.
+Is to survive the attack of randomly generated enemies at each level, with each level being different. The game's dynamics involve continuously collecting experience points from defeated enemies, and it supports hero level  up and choosing one of three possible upgrades with each new exp level.
 
 ## Project goal
 - Demonstrate knowledge of Golang
