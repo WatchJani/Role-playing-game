@@ -4,10 +4,11 @@ import (
 	e "github.com/WatchJani/Role-playing-game/model/enemy"
 	g "github.com/WatchJani/Role-playing-game/model/game"
 	h "github.com/WatchJani/Role-playing-game/model/hero"
+	i "github.com/WatchJani/Role-playing-game/model/item"
 	file "github.com/WatchJani/Role-playing-game/model/reader"
 )
 
-func GameInit() (*g.Game, *h.Hero, *[]e.Enemy) {
+func GameInit() (*g.Game, *h.Hero, *[]e.Enemy, *[]i.Item) {
 	game := g.NewGame()
 	file.NewRead("./config/game.json", game)
 
@@ -19,5 +20,8 @@ func GameInit() (*g.Game, *h.Hero, *[]e.Enemy) {
 	enemy := e.EmptyEnemies()
 	file.NewRead("./config/enemies.json", enemy)
 
-	return game, game.Hero, enemy
+	items := i.EmptyItems()
+	file.NewRead("./config/items.json", items)
+
+	return game, game.Hero, enemy, items
 }

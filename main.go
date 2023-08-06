@@ -5,16 +5,17 @@ import (
 	"time"
 
 	load "github.com/WatchJani/Role-playing-game/helper/game_init"
+
 	m "github.com/WatchJani/Role-playing-game/helper/game_math"
 	"github.com/WatchJani/Role-playing-game/model/enemy"
 )
 
 func main() {
-	game, hero, Enemies := load.GameInit()
+	game, hero, Enemies, items := load.GameInit()
+	hero.String()
 
 	var enemies []enemy.Enemy = make([]enemy.Enemy, game.NumEnemies)
 
-GameLoop:
 	for game.Spawn < game.NumEnemies {
 		enemies[game.Spawn] = (*Enemies)[m.GetNumber(9)]
 		enemies[game.Spawn].String()
@@ -30,7 +31,7 @@ GameLoop:
 
 			if !hero.IsAlive() {
 				fmt.Println("End Game")
-				break GameLoop
+				return
 			}
 
 			if d < enemies[spawn].Weapon.PowerRange {
@@ -47,15 +48,31 @@ GameLoop:
 			hero.Killed++
 		}
 
-		// if game.Hero.Exp > game.Lvl {
-		// 	game.Boosted()
-		// 	fmt.Scanln(&answer)
-		// 	game.BoostLvl()
-		// }
+		if hero.Exp > game.Lvl {
+			for {
+				var answer int
+				opt := game.Boosted(items)
+				fmt.Scanln(&answer)
+
+				if game.InputChecker(answer) {
+					fmt.Printf("===============Input is not valid!=================\n\n\n")
+					continue
+				}
+
+				hero.Ability((*items)[opt[answer]].Name, (*items)[opt[answer]].Value)
+				hero.String()
+
+				game.BoostLvl()
+
+				break
+			}
+		}
 
 		game.Spawn++
 		fmt.Println("spawned:", game.Spawn)
 
 		time.Sleep(500 * time.Millisecond)
 	}
+
+	fmt.Println("You are Winner!")
 }
