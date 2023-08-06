@@ -1,5 +1,7 @@
 # Role-playing-game
 
+![Alt Text](https://github.com/WatchJani/Role-playing-game/blob/master/assets/MacBook%20Pro%2016_%20-%201.jpg)
+
 The project is inspired by the game "Vampire Survivors." It contains a complete backend for the game without the frontend, essentially comprising the game logic that runs in the console.
 
 ## Game features:
