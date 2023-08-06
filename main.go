@@ -10,14 +10,12 @@ import (
 )
 
 func main() {
-
 	game, hero, Enemies := load.GameInit()
 
-	var enemies []enemy.Enemy = make([]enemy.Enemy, 100)
-	numEnemy := len(enemies)
+	var enemies []enemy.Enemy = make([]enemy.Enemy, game.NumEnemies)
 
 GameLoop:
-	for game.Spawn < numEnemy {
+	for game.Spawn < game.NumEnemies {
 		enemies[game.Spawn] = (*Enemies)[m.GetNumber(9)]
 		enemies[game.Spawn].String()
 
@@ -26,24 +24,26 @@ GameLoop:
 
 			fmt.Printf("Spawn Point: %f | Radius: %f | Between %f\n", d, game.Radius, d-game.Radius)
 
-			fmt.Printf("Enemy position %f | My position %f | isSame: %t \n", d, m.Distance(enemies[spawn], game.Hero), m.Distance(enemies[spawn], game.Hero) == d)
+			fmt.Printf("Enemy position %f | My position %f | isSame: %t \n",
+				d, m.Distance(enemies[spawn].GetX(), enemies[spawn].GetY(), hero.GetX(), hero.Y), m.Distance(enemies[spawn].GetX(), enemies[spawn].GetY(), hero.GetX(), hero.GetY()) == d,
+			)
 
-			if !game.Hero.IsAlive() {
+			if !hero.IsAlive() {
 				fmt.Println("End Game")
 				break GameLoop
 			}
 
 			if d < enemies[spawn].Weapon.PowerRange {
-				game.Hero.TakeDamage(enemies[spawn].TakeDame())
-				fmt.Println(game.Hero.Health)
+				hero.TakeDamage(enemies[spawn].TakeDame())
+				fmt.Println(hero.Health)
 			}
 		}
 
-		enemies[hero.Killed].GetDamage(game.Hero.Damage())
+		enemies[hero.Killed].GetDamage(hero.Damage())
 
 		if !enemies[hero.Killed].IsAlive() {
-			game.Hero.SetEXP(enemies[hero.Killed].GetEXP())
-			fmt.Println("Game EXP", game.Hero.Exp)
+			hero.SetEXP(enemies[hero.Killed].GetEXP())
+			fmt.Println("Game EXP", hero.Exp)
 			hero.Killed++
 		}
 

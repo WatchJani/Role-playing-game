@@ -24,9 +24,10 @@ type Settings struct {
 }
 
 type GameBlueprint struct {
-	Width  float64 `json:"Width"`
-	Height float64 `json:"Height"`
-	Lvl    float64 `json:"Lvl"`
+	Width      float64 `json:"Width"`
+	Height     float64 `json:"Height"`
+	Lvl        float64 `json:"Lvl"`
+	NumEnemies int     `json:"EnemiesNumber"`
 }
 
 func NewGame() *Game {
@@ -57,7 +58,7 @@ func (g *Game) BoostLvl() {
 }
 
 func (g Game) String() {
-	fmt.Printf("Radius: %f | Spawn: %d | Width: %f | Height: %f | Lvl: %f | BorderHero: %f | DynamicRadius: %f | MaxRadius: %f | StartLvlPoint: %f | LvlBoost: %f\n",
-		g.Radius, g.Spawn, g.Width, g.Height, g.Lvl, g.SpawnBorderHero, g.DynamicRadius, g.MaxRadius, g.StartLvlPoint, g.LvlBoost,
+	fmt.Printf("Radius: %f | Spawn: %d | Width: %f | Height: %f | Lvl: %f | BorderHero: %f | DynamicRadius: %f | MaxRadius: %f | StartLvlPoint: %f | LvlBoost: %f | NumEnemies %d\n",
+		g.Radius, g.Spawn, g.Width, g.Height, g.Lvl, g.SpawnBorderHero, g.DynamicRadius, g.MaxRadius, g.StartLvlPoint, g.LvlBoost, g.NumEnemies,
 	)
 }

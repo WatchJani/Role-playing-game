@@ -175,7 +175,6 @@ func parseCSVRecord(record []string, object interface{}) error {
 		}
 	}
 
-	// Dodajemo novu strukturu u niz
 	objElem.Set(reflect.Append(objElem, newElem))
 
 	return nil

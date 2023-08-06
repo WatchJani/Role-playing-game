@@ -56,18 +56,18 @@ func (e Enemy) String() {
 }
 
 func (e *Enemy) Move(hero h.Hero) float64 {
-	d := m.Distance(e, hero)
+	d := m.Distance(e.GetX(), e.GetY(), hero.GetX(), hero.Y)
 
 	if d <= e.Movement {
 		return d
 	}
 
-	ABx, ABy := m.NewVector(e, hero)
+	ABx, ABy := m.NewVector(e.GetX(), e.GetY(), hero.GetX(), hero.GetY())
 	NewX, NewY := m.NormalizationVector(ABx, ABy, d)
 
 	e.X, e.Y = e.GetX()+e.Movement*NewX, e.GetY()+e.Movement*NewY
 
-	return m.Distance(e, hero)
+	return m.Distance(e.GetX(), e.GetY(), hero.GetX(), hero.Y)
 }
 
 func (e Enemy) IsAlive() bool {

@@ -6,5 +6,6 @@
     "DynamicRadius": 4,
     "MaxRadius": 20,
     "StartLvlPoint": 3,
-    "LvlBoost": 2.5
+    "LvlBoost": 2.5,
+    "EnemiesNumber" : 100
 }

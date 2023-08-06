@@ -30,7 +30,7 @@ func TestDistance(t *testing.T) {
 	enemy := e.TestEnemyNew(0, 2, 10, 10)
 	hero := h.TestHeroNew(10, 2, 100)
 
-	if d := m.Distance(enemy, hero); d != 10 {
+	if d := m.Distance(enemy.GetX(), enemy.GetY(), hero.GetX(), hero.GetY()); d != 10 {
 		t.Errorf("Test Failed: %f, expected: %f", d, 10.0)
 	}
 }
@@ -39,7 +39,7 @@ func TestNewVector(t *testing.T) {
 	enemy := e.TestEnemyNew(0, 2, 10, 10)
 	hero := h.TestHeroNew(10, 2, 100)
 
-	if x, y := m.NewVector(enemy, hero); x != 10 || y != 0 {
+	if x, y := m.NewVector(enemy.GetX(), enemy.GetY(), hero.GetX(), hero.GetY()); x != 10 || y != 0 {
 		t.Errorf("Test Failed: (%f, %f), expected: (%f, %f)", x, y, 10.0, 0.0)
 	}
 

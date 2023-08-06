@@ -3,8 +3,6 @@ package game_math
 import (
 	"math"
 	"math/rand"
-
-	interf "github.com/WatchJani/Role-playing-game/model"
 )
 
 func GeneratePosition(radius, max, coordination float64) float64 {
@@ -33,19 +31,12 @@ func Percentage(value, percentage float64) float64 {
 	return (value / 100) * percentage
 }
 
-func MinValue(value, min float64) float64 {
-	if value < min {
-		return min
-	}
-	return value
+func Distance(XA, YA, XB, YB float64) float64 {
+	return math.Sqrt(math.Pow(XA-XB, 2) + math.Pow(YA-YB, 2))
 }
 
-func Distance(enemy, hero interf.Position) float64 {
-	return math.Sqrt(math.Pow(enemy.GetX()-hero.GetX(), 2) + math.Pow(enemy.GetY()-hero.GetY(), 2))
-}
-
-func NewVector(enemy, hero interf.Position) (float64, float64) {
-	return hero.GetX() - enemy.GetX(), hero.GetY() - enemy.GetY()
+func NewVector(XA, YA, XB, YB float64) (float64, float64) {
+	return XB - XA, YB - YA
 }
 
 func NormalizationVector(x, y, distance float64) (float64, float64) {
