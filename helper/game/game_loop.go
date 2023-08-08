@@ -79,3 +79,9 @@ func LvlUp(hero *hero.Hero, game *game.Game, items *[]item.Item) {
 		}
 	}
 }
+
+func NewBattlefield(game *game.Game) *[]enemy.Enemy {
+	var enemies []enemy.Enemy = make([]enemy.Enemy, game.NumEnemies)
+
+	return &enemies
+}

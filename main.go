@@ -5,8 +5,6 @@ import (
 	"time"
 
 	load "github.com/WatchJani/Role-playing-game/helper/game"
-
-	"github.com/WatchJani/Role-playing-game/model/enemy"
 )
 
 func main() {
@@ -16,25 +14,25 @@ func main() {
 	hero.String()
 
 	//all enemies on battlefield, which have been created and which will be created
-	var enemies []enemy.Enemy = make([]enemy.Enemy, game.NumEnemies)
+	enemies := load.NewBattlefield(game)
 
 	//game loop
 	for load.InGame(game) {
 		//spawn new enemy
-		load.EnemySpawn(&enemies, Enemies, game)
+		load.EnemySpawn(enemies, Enemies, game)
 
 		//make enemy move
-		if load.EnemyMove(hero, game, &enemies) {
+		if load.EnemyMove(hero, game, enemies) {
 			//game status end
 			fmt.Println("End Game")
 			return
 		}
 
 		//hero make damage
-		load.HeroMakeDamage(&enemies, hero)
+		load.HeroMakeDamage(enemies, hero)
 
 		//hero kill someone
-		load.HeroKilled(&enemies, hero)
+		load.HeroKilled(enemies, hero)
 
 		//hero lvl up
 		load.LvlUp(hero, game, items)

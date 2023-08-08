@@ -36,6 +36,7 @@ func NewGame() *Game {
 	return &Game{}
 }
 
+// main constructor for game
 func (game *Game) Update(hero h.Hero) {
 	var (
 		height = game.Height
@@ -56,10 +57,12 @@ func (game *Game) Update(hero h.Hero) {
 
 }
 
+// boost lvl
 func (g *Game) BoostLvl() {
 	g.Lvl *= g.LvlBoost
 }
 
+// game status
 func (g Game) String() {
 	fmt.Printf("Radius: %f | Spawn: %d | Width: %f | Height: %f | Lvl: %f | BorderHero: %f | DynamicRadius: %f | MaxRadius: %f | StartLvlPoint: %f | LvlBoost: %f | NumEnemies %d\n",
 		g.Radius, g.Spawn, g.Width, g.Height, g.Lvl, g.SpawnBorderHero, g.DynamicRadius, g.MaxRadius, g.StartLvlPoint, g.LvlBoost, g.NumEnemies,
@@ -70,15 +73,16 @@ func (g Game) Boosted(items *[]i.Item) []int {
 	boostLen := len(*items)
 	opt1, opt2, opt3 := m.GetNumber(boostLen), m.GetNumber(boostLen), m.GetNumber(boostLen)
 
-	fmt.Printf("0)\n %s \n %s \n\n1)\n %s \n %s\n\n2)\n %s \n %s \n",
-		(*items)[opt1].Name, (*items)[opt2].Description,
-		(*items)[opt2].Name, (*items)[opt3].Description,
-		(*items)[opt3].Name, (*items)[opt3].Description,
+	fmt.Printf("0)\n %s \n %s \n +%.02f \n\n1)\n %s \n %s \n +%.02f\n\n2)\n %s \n %s\n +%.02f \n",
+		(*items)[opt1].Name, (*items)[opt2].Description, (*items)[opt2].Value,
+		(*items)[opt2].Name, (*items)[opt3].Description, (*items)[opt2].Value,
+		(*items)[opt3].Name, (*items)[opt3].Description, (*items)[opt2].Value,
 	)
 
 	return []int{opt1, opt2, opt3}
 }
 
+// validation of input
 func (g Game) InputChecker(answer int) bool {
 	for i := 0; i < 3; i++ {
 		if answer == i {
@@ -89,6 +93,7 @@ func (g Game) InputChecker(answer int) bool {
 	return true
 }
 
+// increase for on game spawn
 func (g *Game) NewSpawn() {
 	g.Spawn++
 	fmt.Println("spawned:", g.Spawn)
