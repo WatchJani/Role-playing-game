@@ -71,7 +71,7 @@ func (g Game) String() {
 
 func (g Game) Boosted(items *[]i.Item) []int {
 	boostLen := len(*items)
-	opt1, opt2, opt3 := m.RandomNoRepeatable(boostLen)
+	opt1, opt2, opt3 := randomOption(boostLen)
 
 	fmt.Printf("0)\n %s \n %s \n +%.02f \n\n1)\n %s \n %s \n +%.02f\n\n2)\n %s \n %s\n +%.02f \n",
 		(*items)[opt1].Name, (*items)[opt1].Description, (*items)[opt1].Value,
@@ -80,6 +80,18 @@ func (g Game) Boosted(items *[]i.Item) []int {
 	)
 
 	return []int{opt1, opt2, opt3}
+}
+
+func randomOption(object int) (int, int, int) {
+	var count int = 3
+
+	if object < count {
+		panic("Game configuration is not valid\n Check all items\n Min number of items i 3")
+	}
+
+	numbers := m.RandomNoRepeatable(count, 0, object)
+
+	return numbers[0], numbers[1], numbers[2]
 }
 
 // validation of input
