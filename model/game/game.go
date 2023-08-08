@@ -96,5 +96,5 @@ func (g Game) InputChecker(answer int) bool {
 // increase for on game spawn
 func (g *Game) NewSpawn() {
 	g.Spawn++
-	fmt.Println("spawned:", g.Spawn)
+	fmt.Println("[SPAWNED ENEMIES] Spawned: ", g.Spawn)
 }

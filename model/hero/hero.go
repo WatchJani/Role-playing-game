@@ -41,7 +41,7 @@ func TestHeroNew(x, y, health float64) Hero {
 }
 
 func (h *Hero) String() {
-	fmt.Printf("Exp: %f | Health: %.2f | MaxHealth: %.2f | Weapon: %s | Weapon Damage: %f - %f | Killed: %d | X-coordination: %f | Y-coordination: %f\n",
+	fmt.Printf("[HERO STATUS] Hero all status: Exp: %f | Health: %.2f | MaxHealth: %.2f | Weapon: %s | Weapon Damage: %f - %f | Killed: %d | X-coordination: %f | Y-coordination: %f\n",
 		h.Exp, h.Health, h.MaxHealth, h.Weapon.Name, h.Weapon.MinDamageTake, h.Weapon.MaxDamageTake, h.Killed, h.X, h.Y,
 	)
 }

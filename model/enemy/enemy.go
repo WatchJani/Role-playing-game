@@ -50,9 +50,13 @@ func (e *Enemy) GetDamage(damage float64) float64 {
 }
 
 func (e Enemy) String() {
-	fmt.Printf("Class Name: %s | Exp: %f | Health: %f | Movement: %f | Weapon: %s | X-coordination: %f | Y-coordination: %f\n",
+	fmt.Printf("[ENEMY STATUS] Class Name: %s | Exp: %f | Health: %f | Movement: %f | Weapon: %s | X-coordination: %f | Y-coordination: %f\n",
 		e.Class, e.Exp, e.Health, e.Movement, e.Weapon.Name, e.X, e.Y,
 	)
+}
+
+func (e Enemy) ThisEnemy() {
+	e.String()
 }
 
 func (e *Enemy) Move(hero h.Hero) float64 {

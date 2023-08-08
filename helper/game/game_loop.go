@@ -11,10 +11,12 @@ import (
 )
 
 // add new enemy on the battlefield
-func EnemySpawn(allEnemy, kindOfEnemy *[]enemy.Enemy, game *game.Game) {
+func EnemySpawn(allEnemy, kindOfEnemy *[]enemy.Enemy, game *game.Game) *enemy.Enemy {
+	//add new enemy on battlefield
 	(*allEnemy)[game.Spawn] = (*kindOfEnemy)[m.GetNumber(9)]
+	//set random coordination of spawned enemies
 	(*allEnemy)[game.Spawn].Spawn(*game)
-	(*allEnemy)[game.Spawn].String()
+	return &(*allEnemy)[game.Spawn]
 }
 
 // is the end of lvl
@@ -25,7 +27,7 @@ func InGame(game *game.Game) bool {
 func HeroTakeDamage(distance float64, enemy *enemy.Enemy, hero *hero.Hero) {
 	if distance <= (*enemy).Weapon.PowerRange {
 		hero.TakeDamage((*enemy).TakeDame())
-		fmt.Println("Hero Health:", hero.Health)
+		fmt.Printf("[HERO HEALTH]: %f [DAMAGE TAKE] %f\n", hero.Health, (*enemy).TakeDame())
 	}
 }
 
@@ -34,6 +36,7 @@ func HeroMakeDamage(enemies *[]enemy.Enemy, hero *hero.Hero) {
 }
 
 func EnemyMove(hero *hero.Hero, game *game.Game, enemies *[]enemy.Enemy) bool {
+
 	for kill, spawn := hero.Killed, game.Spawn; kill <= spawn; kill++ {
 		//if hero dead, game is over
 		if !hero.IsAlive() {
@@ -46,14 +49,13 @@ func EnemyMove(hero *hero.Hero, game *game.Game, enemies *[]enemy.Enemy) bool {
 		//make damage on hero if range of enemy weapon in radius
 		HeroTakeDamage(distance, &(*enemies)[spawn], hero)
 	}
-
 	return false
 }
 
 func HeroKilled(enemies *[]enemy.Enemy, hero *hero.Hero) {
 	if !(*enemies)[hero.Killed].IsAlive() {
 		hero.SetEXP((*enemies)[hero.Killed].GetEXP())
-		fmt.Println("Game EXP", hero.Exp)
+		fmt.Println("[GAME EXP] EXP: ", hero.Exp)
 		hero.Killed++
 	}
 }
@@ -72,7 +74,6 @@ func LvlUp(hero *hero.Hero, game *game.Game, items *[]item.Item) {
 
 			hero.Ability((*items)[opt[answer]].Name, (*items)[opt[answer]].Value)
 			hero.String()
-
 			game.BoostLvl()
 
 			break
