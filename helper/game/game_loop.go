@@ -76,7 +76,7 @@ func LvlUp(hero *hero.Hero, game *game.Game, items *[]item.Item) {
 				continue
 			}
 
-			hero.Ability((*items)[opt[answer]].Name, (*items)[opt[answer]].Value)
+			hero.Ability((*items)[opt[answer]].Key, (*items)[opt[answer]].Value)
 			hero.String()
 			game.BoostLvl()
 

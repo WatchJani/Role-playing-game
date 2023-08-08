@@ -1,7 +1,56 @@
 [
     {
-        "Name": "health",
-        "Description": "healing your hero",
+        "Key": "Health",
+        "Name": "Healing Potion",
+        "Description": "A small vial containing a shimmering blue liquid. When consumed, it restores a portion of the user's health.",
         "Value": 50
+    },
+    {
+        "Key": "Health",
+        "Name": "Salve of Renewal",
+        "Description": "A soothing ointment with a herbal scent. Applied to wounds, it accelerates natural healing processes.",
+        "Value": 30
+    },
+    {
+        "Key": "Health",
+        "Name": "Elixir of Vitality",
+        "Description": "A bright green potion that invigorates the drinker. It not only heals but also boosts stamina temporarily.",
+        "Value": 40
+    },
+    {
+        "Key": "Health",
+        "Name": "Healer's Bandage",
+        "Description": "A roll of specially woven bandage infused with healing herbs. It can be used in the heat of battle to mend wounds.",
+        "Value": 20
+    },
+    {
+        "Key": "Weapon",
+        "Name": "Precision Barrel",
+        "Description": "A meticulously crafted barrel that enhances the weapon's accuracy and bullet stability, resulting in more precise shots.",
+        "Value": 2
+    },
+    {
+        "Key": "Weapon",
+        "Name": "High-Caliber Rounds",
+        "Description": "Ammunition loaded with larger and more powerful bullets, capable of causing devastating impact upon impact.",
+        "Value": 5
+    },
+    {
+        "Key": "Weapon",
+        "Name": "Explosive Payload Mod",
+        "Description": "This modification equips the firearm with rounds that explode upon impact, dealing damage to the target and nearby foes.",
+        "Value": 10
+    },
+    {
+        "Key": "Weapon",
+        "Name": "Vital Strike Stock",
+        "Description": "A reinforced stock that provides stability during firing, allowing for better aim and precision targeting.",
+        "Value": 5
+    },
+    {
+        "Key": "Weapon",
+        "Name": "Venom Infusion Kit",
+        "Description": "This kit injects specialized toxin into bullets, causing lingering poison damage to targets hit.",
+        "Value": 8
     }
 ]

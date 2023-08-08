@@ -71,12 +71,12 @@ func (g Game) String() {
 
 func (g Game) Boosted(items *[]i.Item) []int {
 	boostLen := len(*items)
-	opt1, opt2, opt3 := m.GetNumber(boostLen), m.GetNumber(boostLen), m.GetNumber(boostLen)
+	opt1, opt2, opt3 := m.RandomNoRepeatable(boostLen)
 
 	fmt.Printf("0)\n %s \n %s \n +%.02f \n\n1)\n %s \n %s \n +%.02f\n\n2)\n %s \n %s\n +%.02f \n",
-		(*items)[opt1].Name, (*items)[opt2].Description, (*items)[opt2].Value,
+		(*items)[opt1].Name, (*items)[opt1].Description, (*items)[opt1].Value,
 		(*items)[opt2].Name, (*items)[opt3].Description, (*items)[opt2].Value,
-		(*items)[opt3].Name, (*items)[opt3].Description, (*items)[opt2].Value,
+		(*items)[opt3].Name, (*items)[opt3].Description, (*items)[opt3].Value,
 	)
 
 	return []int{opt1, opt2, opt3}

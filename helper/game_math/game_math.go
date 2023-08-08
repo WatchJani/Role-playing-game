@@ -26,8 +26,6 @@ func GetNumber(max int) int {
 	return rand.Intn(max)
 }
 
-
-
 // Percentage of value (20% of 150)
 func Percentage(value, percentage float64) float64 {
 	return (value / 100) * percentage
@@ -46,4 +44,25 @@ func NewVector(XA, YA, XB, YB float64) (float64, float64) {
 // vector normalization
 func NormalizationVector(x, y, distance float64) (float64, float64) {
 	return x / distance, y / distance
+}
+
+func RandomNoRepeatable(object int) (int, int, int) {
+	var count int = 3
+
+	if object < count {
+		panic("Game configuration is not valid\n Check all items\n Min number of items i 3")
+	}
+
+	uniqueNumbers := make([]int, 0, count)
+	numberSet := make(map[int]bool)
+
+	for len(uniqueNumbers) < count {
+		num := GetNumber(3)
+		if !numberSet[num] {
+			numberSet[num] = true
+			uniqueNumbers = append(uniqueNumbers, num)
+		}
+	}
+
+	return uniqueNumbers[0], uniqueNumbers[1], uniqueNumbers[2]
 }

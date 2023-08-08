@@ -77,8 +77,8 @@ func (h *Hero) PlusWeaponDamage(value float64) {
 
 func (h *Hero) Ability(name string, value float64) {
 	posibleability := map[string]func(float64){
-		"health": h.PlusHealth,
-		"weapon": h.PlusWeaponDamage,
+		"Health": h.PlusHealth,
+		"Weapon": h.PlusWeaponDamage,
 	}
 
 	posibleability[name](value)
