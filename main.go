@@ -19,8 +19,8 @@ func main() {
 	//game loop
 	for load.InGame(game) {
 		//spawn new enemy
-		enemy := load.EnemySpawn(enemies, Enemies, game)
-		enemy.ThisEnemy() //just for print
+		load.EnemySpawn(enemies, Enemies, game)
+		// enemy.ThisEnemy() //just for print
 
 		//make enemy move
 		if load.EnemyMove(hero, game, enemies) {

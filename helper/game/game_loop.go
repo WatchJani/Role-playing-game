@@ -26,8 +26,9 @@ func InGame(game *game.Game) bool {
 
 func HeroTakeDamage(distance float64, enemy *enemy.Enemy, hero *hero.Hero) {
 	if distance <= (*enemy).Weapon.PowerRange {
-		hero.TakeDamage((*enemy).TakeDame())
-		fmt.Printf("[HERO HEALTH]: %f [DAMAGE TAKE] %f\n", hero.Health, (*enemy).TakeDame())
+		enemyDamage := (*enemy).TakeDame()
+		hero.TakeDamage(enemyDamage)
+		fmt.Printf("[HERO HEALTH]: %f [DAMAGE TAKE] %f\n", hero.Health, enemyDamage)
 	}
 }
 
@@ -64,7 +65,10 @@ func LvlUp(hero *hero.Hero, game *game.Game, items *[]item.Item) {
 	if hero.Exp > game.Lvl {
 		for {
 			var answer int
+			fmt.Println()
 			opt := game.Boosted(items)
+			fmt.Println()
+			fmt.Printf("Your answer: ")
 			fmt.Scanln(&answer)
 
 			if game.InputChecker(answer) {

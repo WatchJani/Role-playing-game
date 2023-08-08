@@ -63,9 +63,11 @@ func (h Hero) IsAlive() bool {
 }
 
 func (h *Hero) PlusHealth(value float64) {
-	if h.MaxHealth >= h.Health+value {
-		h.Health += value
+	if h.MaxHealth <= h.Health+value {
+		value = h.MaxHealth - h.Health
 	}
+	h.Health += value
+	fmt.Println("[HEALTH] Boosted for: ", value)
 }
 
 func (h *Hero) PlusWeaponDamage(value float64) {
