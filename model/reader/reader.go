@@ -24,6 +24,7 @@ type CVS struct {
 	Comma   rune
 }
 
+// custom CVS option with injecting function
 func NewCVS(fns ...OptCVS) *CVS {
 	d := DefaultCVS()
 
@@ -34,18 +35,21 @@ func NewCVS(fns ...OptCVS) *CVS {
 	return &d
 }
 
+// Option Comma func for CVS
 func Comma(comma rune) OptCVS {
 	return func(c *CVS) {
 		c.Comma = comma
 	}
 }
 
+// Option Comment func for CVS
 func Comment(comment rune) OptCVS {
 	return func(c *CVS) {
 		c.Comment = comment
 	}
 }
 
+// Default constructor for CVS reader
 func DefaultCVS() CVS {
 	return CVS{
 		Comment: '#',
@@ -53,21 +57,23 @@ func DefaultCVS() CVS {
 	}
 }
 
+// Read file by extension(json or cvs automatic)
 func NewRead(path string, object any) error {
-	extension := filepath.Ext(path)
+	extension := filepath.Ext(path) //read extension
 
 	switch extension[1:] {
 	case "json":
 		json := NewJSON()
-		return json.ReadFile(path, object)
+		return json.ReadFile(path, object) //read file if json format and parse
 	case "cvs":
 		cvs := NewCVS()
-		return cvs.ReadFile(path, object)
+		return cvs.ReadFile(path, object) //read file if cvs format and parse
 	default:
-		return fmt.Errorf("Can read this file extension")
+		return fmt.Errorf("Can read this file extension(format)") //if extension is not founded
 	}
 }
 
+// json reader
 func (JSON) ReadFile(path string, object any) error {
 	file, err := os.Open(path)
 	if err != nil {
@@ -78,6 +84,7 @@ func (JSON) ReadFile(path string, object any) error {
 	return json.NewDecoder(file).Decode(object)
 }
 
+// cvs reader
 func (c CVS) ReadFile(path string, object any) error {
 	file, err := os.Open(path)
 	if err != nil {
@@ -114,23 +121,25 @@ func (c CVS) ReadFile(path string, object any) error {
 
 	return nil
 }
+
+// automatic object parser by object fields
 func parseCSVRecord(record []string, object interface{}) error {
 	objValue := reflect.ValueOf(object)
 
 	if objValue.Kind() != reflect.Ptr || objValue.IsNil() {
-		return fmt.Errorf("Objekat mora biti pokazivač na objekat")
+		return fmt.Errorf("Object need to be pointer on object")
 	}
 
 	objElem := objValue.Elem()
 	if objElem.Kind() != reflect.Slice {
-		return fmt.Errorf("Objekat mora biti pokazivač na niz struktura")
+		return fmt.Errorf("Object need to be pointer on array of structure")
 	}
 
 	objType := objElem.Type().Elem()
 	numFields := objType.NumField()
 
 	if len(record) != numFields {
-		return fmt.Errorf("Broj polja u CSV zapisu ne odgovara broju polja u strukturi")
+		return fmt.Errorf("The number of field in CSV is not equal number field of structure")
 	}
 
 	newElem := reflect.New(objType).Elem()
@@ -171,7 +180,7 @@ func parseCSVRecord(record []string, object interface{}) error {
 			}
 			field.SetFloat(numValue)
 		default:
-			return fmt.Errorf("Nepodržan tip polja u strukturi")
+			return fmt.Errorf("Unsupported field type in structure")
 		}
 	}
 

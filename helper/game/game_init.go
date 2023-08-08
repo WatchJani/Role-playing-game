@@ -1,4 +1,4 @@
-package game_init
+package game
 
 import (
 	e "github.com/WatchJani/Role-playing-game/model/enemy"

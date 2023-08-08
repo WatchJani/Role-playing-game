@@ -53,6 +53,7 @@ func (game *Game) Update(hero h.Hero) {
 
 	game.Radius = radius
 	game.Hero = hero.UpdateHero(height, width, game.SpawnBorderHero)
+
 }
 
 func (g *Game) BoostLvl() {
@@ -86,4 +87,9 @@ func (g Game) InputChecker(answer int) bool {
 	}
 
 	return true
+}
+
+func (g *Game) NewSpawn() {
+	g.Spawn++
+	fmt.Println("spawned:", g.Spawn)
 }

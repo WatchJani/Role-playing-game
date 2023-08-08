@@ -22,7 +22,7 @@ func (e Skeleton) GetY() float64 {
 }
 
 func NewSkeletonHero(width, height, health, SpawnBorderHero float64, weapon w.Weapon) Skeleton {
-	widthBorder, heightBorder := m.BorderPercentage(width, SpawnBorderHero), m.BorderPercentage(height, SpawnBorderHero)
+	widthBorder, heightBorder := m.Percentage(width, SpawnBorderHero), m.Percentage(height, SpawnBorderHero)
 
 	return Skeleton{
 		X:      m.RandomNumber(widthBorder, width-widthBorder),

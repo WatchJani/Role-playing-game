@@ -4,75 +4,48 @@ import (
 	"fmt"
 	"time"
 
-	load "github.com/WatchJani/Role-playing-game/helper/game_init"
+	load "github.com/WatchJani/Role-playing-game/helper/game"
 
-	m "github.com/WatchJani/Role-playing-game/helper/game_math"
 	"github.com/WatchJani/Role-playing-game/model/enemy"
 )
 
 func main() {
+	//game load
 	game, hero, Enemies, items := load.GameInit()
+	//hero status
 	hero.String()
 
+	//all enemies on battlefield, which have been created and which will be created
 	var enemies []enemy.Enemy = make([]enemy.Enemy, game.NumEnemies)
 
-	for game.Spawn < game.NumEnemies {
-		enemies[game.Spawn] = (*Enemies)[m.GetNumber(9)]
-		enemies[game.Spawn].String()
+	//game loop
+	for load.InGame(game) {
+		//spawn new enemy
+		load.EnemySpawn(&enemies, Enemies, game)
 
-		for kill, spawn := hero.Killed, game.Spawn; kill <= spawn; kill++ {
-			d := enemies[spawn].Move(*hero)
-
-			fmt.Printf("Spawn Point: %f | Radius: %f | Between %f\n", d, game.Radius, d-game.Radius)
-
-			fmt.Printf("Enemy position %f | My position %f | isSame: %t \n",
-				d, m.Distance(enemies[spawn].GetX(), enemies[spawn].GetY(), hero.GetX(), hero.Y), m.Distance(enemies[spawn].GetX(), enemies[spawn].GetY(), hero.GetX(), hero.GetY()) == d,
-			)
-
-			if !hero.IsAlive() {
-				fmt.Println("End Game")
-				return
-			}
-
-			if d < enemies[spawn].Weapon.PowerRange {
-				hero.TakeDamage(enemies[spawn].TakeDame())
-				fmt.Println(hero.Health)
-			}
+		//make enemy move
+		if load.EnemyMove(hero, game, &enemies) {
+			//game status end
+			fmt.Println("End Game")
+			return
 		}
 
-		enemies[hero.Killed].GetDamage(hero.Damage())
+		//hero make damage
+		load.HeroMakeDamage(&enemies, hero)
 
-		if !enemies[hero.Killed].IsAlive() {
-			hero.SetEXP(enemies[hero.Killed].GetEXP())
-			fmt.Println("Game EXP", hero.Exp)
-			hero.Killed++
-		}
+		//hero kill someone
+		load.HeroKilled(&enemies, hero)
 
-		if hero.Exp > game.Lvl {
-			for {
-				var answer int
-				opt := game.Boosted(items)
-				fmt.Scanln(&answer)
+		//hero lvl up
+		load.LvlUp(hero, game, items)
 
-				if game.InputChecker(answer) {
-					fmt.Printf("===============Input is not valid!=================\n\n\n")
-					continue
-				}
+		//game increase spawn
+		game.NewSpawn()
 
-				hero.Ability((*items)[opt[answer]].Name, (*items)[opt[answer]].Value)
-				hero.String()
-
-				game.BoostLvl()
-
-				break
-			}
-		}
-
-		game.Spawn++
-		fmt.Println("spawned:", game.Spawn)
-
+		//make simulation time for move
 		time.Sleep(500 * time.Millisecond)
 	}
 
+	//game status end
 	fmt.Println("You are Winner!")
 }

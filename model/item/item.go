@@ -6,14 +6,7 @@ type Item struct {
 	Value       float64 `json:"Value"`
 }
 
+// empty array of Items
 func EmptyItems() *[]Item {
 	return &[]Item{}
-}
-
-func New(name, description string, value float64) *Item {
-	return &Item{
-		Name:        name,
-		Description: description,
-		Value:       value,
-	}
 }
